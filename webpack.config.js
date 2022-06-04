@@ -10,14 +10,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(jsx|js)$/,
+        include: path.resolve(__dirname, 'src'),
         exclude: /(node_modules)/,
-        use: {
+        use: [{
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [
+              ['@babel/preset-env', {
+                "targets": "defaults" 
+              }],
+              '@babel/preset-react'
+            ]
           }
-        }
+        }]
       }
     ]
   },

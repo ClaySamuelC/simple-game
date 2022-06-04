@@ -1,5 +1,9 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+
 import {createCharacter} from './models/character.js';
 import {createAction} from './models/action.js';
+import {Character} from './views/character.jsx';
 
 const player = createCharacter("Player", 30);
 player.actions.push(createAction("Strike", {attack: 5}));
@@ -48,3 +52,9 @@ if (player.health <= 0) {
 } else if (enemy.health <= 0) {
   console.log("You win!");
 }
+
+const container = document.getElementById('canvas');
+const root = createRoot(container);
+root.render(
+  Character(player)
+);
